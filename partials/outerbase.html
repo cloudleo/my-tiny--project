@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+  <head>
+     <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+  <link type="text/css" rel="stylesheet" href='/static/bootstrap/css/bootstrap-social.css' />
+<link type="text/css" rel="stylesheet" href='/static/bootstrap/css/font-awesome.css' />
+  <link type="text/css" rel="stylesheet" href='/static/bootstrap/css/bootstrap.min.css' />
+    <link type="text/css" rel="stylesheet" href='/static/bootstrap/css/ie10-workaround.css' />
+
+  <link type="text/css"  href='/static/bootstrap/css/original.css' />
+ 
+  </head>
+  <body>
+    <div class="container">
+    <div class="navbar-default">
+      
+
+        <nav class="navbar navbar-inverse navbar-fixed-top" >
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="/">Ilink2Music</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+              <ul class="nav navbar-nav pull-right">
+                
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About<span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                  
+                   <!--  <li><a href="#">Action</a></li>
+                    <li><a href="#">Another action</a></li>
+                    <li><a href="#">Something else here</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li class="dropdown-header">section</li>
+                    <li><a href="#">Separated link</a></li> -->
+                    <li><a href="/contacts">Contact Us</a></li>
+                  </ul> </li>
+                  {% if not user %}
+         
+      
+                  <li><a href="#contest"  data-toggle="modal" data-dismiss="modal" data-target="#myModalforLogin">Login</a></li> 
+                <li><a style="padding: 10px 15px; margin: 5px ;color: white;"class="btn btn-danger" href="#" data-toggle="modal" data-target="#myModal" >Sign Up</a></li>
+               
+                
+              </ul>
+                {% endif %}
+            </div>
+          </div>
+        </nav>
+
+      </div>
+    </div>
+     <br>
+     <br>
+
+       <br>
+     <!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal  for sign Up content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title text-center">Ilink2Music</h4>
+      </div>
+      <div class="modal-body">
+        <form action="/signup" method="POST" onsubmit="document.location.href='/profile'">
+          <div class="form-group">
+    <label for="exampleInputEmail1"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> Email address</label>
+    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+  </div>
+   <div class="form-group">
+    <label for="Username"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Username</label>
+    <input type="username" class="form-control" id="username" placeholder="Username">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1"><span class="glyphicon glyphicon-link" aria-hidden="true"></span> Password</label>
+    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+  </div>
+  <label>
+      <input type="checkbox"> Remember me 
+        </form>
+      </div>
+       <button type="submit" class="btn btn-lg btn-danger center-block" data-dismiss="modal">sign up</button>
+       <br>
+      <div class="modal-footer">
+               <p class="text-center"> Or Sign Up with </p>
+      <br>
+         <a class="btn btn-block btn-social btn-twitter">
+    <span class="fa fa-twitter"></span> Sign in with Twitter
+  </a>
+    <a class="btn btn-block btn-social btn-facebook">
+    <span class="fa fa-facebook"></span> Sign in with Facebook
+  </a>
+    <a class="btn btn-block btn-social btn-google">
+    <span class="fa fa-google"></span> Sign in with Google
+  </a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!--- end of modal -->
+
+  <!-- Modal -->
+
+
+ <div style="height: 50px;"></div>
+   
+      {%block content%}
+     
+     {% endblock %}
+
+
+
+        <div style="height: 150px;"></div>
+
+
+
+           
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          <footer style="background-color: #1a1a1a;">
+      <div class="container">
+      <br>    
+ 
+        <p class="pull-right"> 
+   <a class="btn btn-social-icon btn-twitter">
+    <span class="fa fa-twitter"></span>&middot;
+  </a> <a class="btn btn-social-icon btn-instagram">
+    <span class="fa fa-instagram"></span>&middot;
+   
+     </a> <a class="btn btn-social-icon btn-linkedin" href="https://www.linkedin.com/company/ilink2music" target="_blank">
+    <span class="fa fa-linkedin" ></span>&middot;
+  </a> <a class="btn btn-social-icon btn-facebook">
+    <span class="fa fa-facebook"></span>
+  </a></p>
+        
+   <br>    
+   <br>
+  <br>
+  <br>
+  <p>&copy; 2016 Company, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
+   </div>
+</footer>
+    </div><!-- /.container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+    <script src='/static/bootstrap/js/bootstrap.min.js'></script>
+    <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
+      <script src='/static/bootstrap/js/carousel.js'></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+   <script src='/static/bootstrap/js/ie10-workaround.js'></script>
+  </body>
+</html>

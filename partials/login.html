@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container" style="width: 50%;">
+ <div class="content" style="width: 75%; margin: 0 auto; border:1px;">
+<h1>Login</h1>
+
+{% if failed %}
+
+    <strong>Login failed!</strong> Check your credentials and try again.
+
+{% endif %}
+    
+      <div class="header">
+        <h4 class="title text-center">Ilink2Music</h4>
+      </div>
+      <div class="body">
+        <form  method="POST" id="login_form" >
+          <div class="form-group">
+    <label for="exampleInputEmail1"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Email address</label>
+    <input type="text" class="form-control" value="{{email}}"  name="email" placeholder="Email">
+  </div>
+   
+  <div class="form-group">
+    <label for="exampleInputPassword1"><span class="glyphicon glyphicon-link" aria-hidden="true"></span> Password</label>
+    <input type="password" class="form-control"  name="password" placeholder="Password">
+  </div>
+  <label>
+
+      <input type="checkbox"> Remember me <p class='text-right'><a href="/forgot">forgot your password?</a></p>
+        </form>
+      </div>
+       <button type="submit" value="submit"  class="btn btn-lg btn-danger center-block" onclick="form_submit()" >Login</button>
+      <!--  <br>
+      <div class="footer">
+               <p class="text-center"> Or Login with </p>
+      <br>
+         <a class="btn btn-block btn-social btn-twitter">
+    <span class="fa fa-twitter"></span> Sign in with Twitter
+  </a>
+    <a class="btn btn-block btn-social btn-facebook">
+    <span class="fa fa-facebook"></span> Sign in with Facebook
+  </a>
+    <a class="btn btn-block btn-social btn-google">
+    <span class="fa fa-google"></span> Sign in with Google
+  </a>
+     </div> -->
+    </div>
+  
+<script>
+ function form_submit() {
+    document.getElementById("login_form").submit();
+   }    
+</script>
+{% endblock %}

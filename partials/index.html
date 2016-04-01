@@ -1,0 +1,281 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+     <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <script src="https://cdn.firebase.com/js/client/2.4.1/firebase.js"></script>
+
+    
+  <link type="text/css" rel="stylesheet" href='/static/bootstrap/css/bootstrap-social.css' />
+<link type="text/css" rel="stylesheet" href='/static/bootstrap/css/font-awesome.css' />
+  <link type="text/css" rel="stylesheet" href='/static/bootstrap/css/bootstrap.min.css' />
+    <link type="text/css" rel="stylesheet" href='/static/bootstrap/css/ie10-workaround.css' />
+
+  <link type="text/css"  href='/static/bootstrap/css/original.css' />
+ 
+  </head>
+  <body>
+    <div class="container">
+    <div class="navbar-default">
+      
+
+        <nav class="navbar navbar-fixed-top" style="background-color: white; opacity: .9;" >
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a  href="/"><div style="height: 60px; width: 200px; background: url('/static/bootstrap/img/Logo.png') no-repeat top left;"  ></div></a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+              <ul class="nav navbar-nav pull-right">
+                
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About<span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                  
+                   <!--  <li><a href="#">Action</a></li>
+                    <li><a href="#">Another action</a></li>
+                    <li><a href="#">Something else here</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li class="dropdown-header">section</li>
+                    <li><a href="#">Separated link</a></li> -->
+                    <li><a href="/contacts">Contact Us</a></li>
+                  </ul> </li>
+                  <li><a href="/login" >Login</a></li> 
+                <li><a style="padding: 10px 15px; margin: 5px ;color: white;"class="btn btn-danger" href="#" data-toggle="modal"  data-target="#myModal" >Sign Up</a></li>
+               
+                
+              </ul>
+            </div>
+          </div>
+        </nav>
+
+      </div>
+    </div>
+     <br>
+     <br>
+
+       <br>
+     <!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal  for sign Up content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title text-center">Ilink2Music</h4>
+      </div>
+      <div class="modal-body">
+        <form action="/" method="POST" id="search_form" >
+          <div class="form-group">
+    <label for="email"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> Email address</label>
+    <input name="email" class="form-control"  placeholder="Email">
+  </div>
+ 
+   <div class="form-group">
+    <label for="Username"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Username</label>
+    <input name="username" class="form-control" id="username" placeholder="Username">
+  </div>
+  <div class="form-group">
+    <label for="password"><span class="glyphicon glyphicon-link" aria-hidden="true"></span> Password</label>
+    <input type="password" name="password" class="form-control" id="password" placeholder="Password">
+  </div>
+  <label>
+      <input type="checkbox"> Remember me 
+        </form>
+      </div>
+       <button type="submit" onclick="hform_submit()" value="submit" class="btn btn-lg btn-danger center-block"  data-dismiss="modal">sign up</button>
+       <br>
+      <!-- <div class="modal-footer">
+               <p class="text-center"> Or Sign Up with </p>
+      <br>
+         <a class="btn btn-block btn-social btn-twitter">
+    <span class="fa fa-twitter"></span> Sign in with Twitter
+  </a>
+    <a class="btn btn-block btn-social btn-facebook">
+    <span class="fa fa-facebook"></span> Sign in with Facebook
+  </a>
+    <a  onclick="form_submit()"class="btn btn-block btn-social btn-google" data-provider="google">
+    <span class="fa fa-google"></span> Sign in with Google
+  </a>
+      </div> -->
+    </div>
+
+  </div>
+</div>
+
+<!--- end of modal -->
+
+  <!-- Modal -->
+
+
+    <!-- Modal  for Login content-->
+   
+<script>
+ function hform_submit() {
+    document.getElementById("search_form").submit();
+     }
+  
+</script>
+<!--- end of modal -->
+    <!-- Carousel
+    ================================================== -->
+    <div id="myCarousel" class="carousel slide hidden-xs" data-ride="carousel">
+      <!-- Indicators -->
+      <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+        <li data-target="#myCarousel" data-slide-to="2"></li>
+      </ol>
+      <div class="carousel-inner" role="listbox">
+        <div class="item active">
+          <img class="first-slide center-block" src="/static/bootstrap/img/rappers.jpg" alt="First slide">
+          <div class="container-fluid">
+            <div class="carousel-caption">
+              <h1>Join Today!</h1>
+                <h2>Create a profile then use this platform to create or grow your <bold>buzz</bold>.</h2>
+              <h3>Get known and work with other like artist</h3>
+                <h3>You're not alone</h3>
+              <p><a class="btn btn-lg btn-danger" href="#" role="button" data-toggle="modal" data-target="#myModal">Sign up today</a></p>
+            </div>
+          </div>
+        </div>
+        <div class="item">
+          <img class="second-slide center-block" src="/static/bootstrap/img/be_featured.jpg" alt="Second slide">
+          <div class="container">
+            <div class="carousel-caption">
+                    <h1>Be Featured as artist of the week</h1>
+                    <h3>Start growing your fanbase</h3>
+              <p><a class="btn btn-lg btn-danger" href="#" role="button" data-toggle="modal" data-target="#myModal">Learn more</a></p>
+            </div>
+          </div>
+        </div>
+        <div class="item">
+          <img class="third-slide center-block" src="/static/bootstrap/img/big-sean.jpg" alt="Third slide">
+          <div class="container">
+            <div class="carousel-caption">
+              <h1>Sign up for exclusive contest and prizes. </h1>
+        <p><a class="btn btn-lg btn-danger" href="#" role="button" data-toggle="modal" data-target="#myModal">Learn more</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    </div><!-- /.carousel -->
+
+
+    <!-- Marketing messaging and featurettes
+    ================================================== -->
+    <!-- Wrap the rest of the page in another container to center all the content. -->
+
+
+
+      <!-- START THE FEATURETTES -->
+   <hr class="featurette-divider">
+
+      <div class="row">
+        <div class="col-md-7 text-center">
+          <div style="margin: 75px" class="text-center">
+          <h2 class="featurette-heading">Want tips and advice on your <span class="text-muted"> music Career?</span></h2>
+          <p class="lead"> Our Artist Development section will have tutorials and career advice from industry professionals.</p>
+        </div>
+        </div>
+        <div class="col-md-5">
+          <img class="featurette-image img-responsive center-block"  src="/static/bootstrap/img/music.jpg" alt="Generic placeholder image">
+        </div>
+      </div>
+
+   
+
+      <div class="row" style="background-color: black;">
+        <div class="col-md-12 text-center" style="color: white">
+           <div style="margin: 75px">
+          <h2 class="featurette-heading">Looking for a band member?</h2>
+          <p class="lead"> Look no more. With the "Link" section you can find the missing link.</p>
+           </div>
+        </div>
+        </div>
+
+      <div class="row" style="background-color: #ff6600" >
+
+        <div class="col-md-6">
+            <div style="margin: 75px" class="text-center">
+          <h2 class="featurette-heading" style="color: white" >Want to vibe out to Main stream and upcoming artist on one platform? </h2>
+          <p class="lead" style="color: white">Now you can! Discover new artists that are similar to main stream artist or just listen to whats hot out right now.</p>
+           </div>
+        </div>
+        <div class="col-md-6" >
+          <img class="img-responsive pull-right" style="margin: 0" src="/static/bootstrap/img/people.jpg" alt="Generic placeholder image">
+        </div>
+      </div>
+
+     
+
+      <div class="row">
+        <div class="col-md-12 text-center">
+           <div style="margin: 75px">
+          <h2 class="featurette-heading">Contests!</h2>
+          <p class="lead">Every week will be a new contest for prizes such as meeting your favorite artist, winning studio time, VIP tickets to concerts and more.</p>
+          <h4> just log in or sign up and get ready to compete!</h4>
+          <p><a class="btn btn-lg btn-danger" href="#" role="button" data-toggle="modal" data-target="#myModal">Sign Up</a></p>
+           </div>
+        </div>
+        </div>
+
+      <!-- /END THE FEATURETTES -->
+
+
+      <!-- FOOTER -->
+      <footer style="background-color: #1a1a1a">
+      <div class="container">
+      <br>    
+ 
+        <p class="pull-right"> 
+   <a class="btn btn-social-icon btn-twitter">
+    <span class="fa fa-twitter"></span>&middot;
+  </a> <a class="btn btn-social-icon btn-instagram">
+    <span class="fa fa-instagram"></span>&middot;
+     </a>  <a class="btn btn-social-icon btn-linkedin" href="https://www.linkedin.com/company/ilink2music" target="_blank">
+    <span class="fa fa-linkedin" ></span>&middot;
+  </a> <a class="btn btn-social-icon btn-facebook">
+    <span class="fa fa-facebook"></span>
+  </a></p>
+        
+   <br>    
+   <br>
+  <br>
+  <br>
+  <p>&copy; 2016 Company, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
+   </div>
+</footer>
+    </div><!-- /.container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+    <script src='/static/bootstrap/js/bootstrap.min.js'></script>
+    <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
+      <script src='/static/bootstrap/js/carousel.js'></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+   <script src='/static/bootstrap/js/ie10-workaround.js'></script>
+  </body>
+</html>

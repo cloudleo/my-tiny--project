@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title></title>
+	<link rel="stylesheet" href="">
+	<script src="https://cdn.firebase.com/js/client/2.4.1/firebase.js"></script>
+</head>
+<body>
+	<script>
+		// initialize and setup facebook js sdk
+		window.fbAsyncInit = function() {
+		    FB.init({
+		      appId      : '834320270027731',
+		      xfbml      : true,
+		      version    : 'v2.5'
+		    });
+		    FB.getLoginStatus(function(response) {
+		    	if (response.status === 'connected') {
+		    		document.getElementById('status').innerHTML = 'We are connected.';
+		    		document.getElementById('login').style.visibility = 'hidden';
+		    	} else if (response.status === 'not_authorized') {
+		    		document.getElementById('status').innerHTML = 'We are not logged in.'
+		    	} else {
+		    		document.getElementById('status').innerHTML = 'You are not logged into Facebook.';
+		    	}
+		    });
+		};
+		(function(d, s, id){
+		    var js, fjs = d.getElementsByTagName(s)[0];
+		    if (d.getElementById(id)) {return;}
+		    js = d.createElement(s); js.id = id;
+		    js.src = "//connect.facebook.net/en_US/sdk.js";
+		    fjs.parentNode.insertBefore(js, fjs);
+		}(document, 'script', 'facebook-jssdk'));
+		
+		// login with facebook with extra permissions
+		function login() {
+			FB.login(function(response) {
+				if (response.status === 'connected') {
+		    		document.getElementById('status').innerHTML = 'We are connected.';
+		    		document.getElementById('login').style.visibility = 'hidden';
+		    		sendEmailAddrToMyServer(response.email);
+		    	} else if (response.status === 'not_authorized') {
+		    		document.getElementById('status').innerHTML = 'We are not logged in.'
+		    	} else {
+		    		document.getElementById('status').innerHTML = 'You are not logged into Facebook.';
+		    	}
+			}, {scope: 'email'});
+		}
+		
+		// getting basic user info
+		function getInfo() {
+			FB.api('/me', 'GET', {fields: 'first_name,last_name,name,id,email'}, function(response) {
+				document.getElementById('status').innerHTML = response.email ;//id;
+			});
+		}
+
+	</script>
+	<style>
+    #login {
+      padding: 0.5em 1em;
+      background-color: #DD4B39;
+      border: none;
+      color: #FFF;
+      cursor: pointer;
+    }
+  </style>
+<input id="username" type="text" placeholder="Name"><br/>
+  <input id="text" type="text" placeholder="Message"><br/>
+  <button id="post">Post</button><br/>
+  <div id="results"></div>
+
+  <button id="login">Login with Google</button><br/>
+  <input id="text" type="text" placeholder="Message"><br/>
+	<script>
+    var myFirebase = new Firebase('https://vivid-inferno-4124.firebaseio.com/');
+    var usernameInput = document.querySelector('#username');
+    var loginButton = document.querySelector('#login');
+    var textInput = document.querySelector('#text');
+    var postButton = document.querySelector('#post');
+    postButton.style.display = "none";
+    textInput.style.display = "none";
+
+    postButton.addEventListener("click", function() {
+      var msgUser = usernameInput.value;
+      var msgText = textInput.value;
+      myFirebase.set(msgUser + " says: " + msgText);
+      textInput.value = "";
+       });
+   loginButton.addEventListener("click", function() {
+      myFirebase.authWithOAuthPopup("google", function(error, authData) {
+        if (error) {
+          console.log(error);
+        } else {
+          console.log(authData);
+        }
+      }, {remember: "none"}); // will end authentication on page close/reload
+    });
+   myFirebase.onAuth(function (authData) {
+    if (authData) {
+        username = authData.google.displayName;
+        loginButton.textContent = "Logged in as " + username;
+        loginButton.disabled = true;
+        postButton.style.display = "block";
+        textInput.style.display = "block";
+    }
+   });
+</script>
+
+	<div id="status"></div>
+	<button onclick="getInfo()">Get Info</button>
+	<button onclick="login()" id="login">Login</button>
+
+</body>
+</html>

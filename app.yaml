@@ -1,0 +1,51 @@
+application: development-1268
+version: 1
+runtime: python27
+api_version: 1
+threadsafe: yes
+
+handlers:
+
+- url: /signup
+  script: main.app
+  secure: always
+
+- url: /login
+  script: main.app
+  secure: always
+
+- url: /forgot
+  script: main.app
+  secure: always
+
+- url: /favicon\.ico
+  static_files: favicon.ico
+  upload: favicon\.ico
+
+
+
+- url: /static
+  static_dir: static/
+
+- url: /icon.ico
+  static_dir: icon.ico
+
+- url: /partials
+  static_dir: static/partials
+
+- url: /_ah/mail/.+
+  script: handle_incoming_email.app
+  login: admin
+
+- url: .*
+  script: main.app
+
+inbound_services:
+- mail
+
+libraries:
+
+- name: webapp2
+  version: "2.5.2"
+
+

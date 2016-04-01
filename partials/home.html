@@ -1,0 +1,131 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<br><br><br>
+ <div class="row">
+        <div class="col-xs-6 col-xs-offset-3">
+          <!-- New message panel -->
+          <div class="panel panel-default">
+            <div class="panel-heading">New Post</div>
+            <div class="panel-body">
+              <div class="input-group" style="width: 100%; text-align: center;">
+                <!-- Login button -->
+                <button id="loginButton" style="width: 100%; margin-bottom: 10px">Login With Google</button>
+
+                <!-- Logout button -->
+                <button id="logoutButton" style="width: 100%; margin-bottom: 10px">Logout</button>
+
+                <!-- Logged in text -->
+                <p id="loggedInText" style="width: 100%; margin-bottom: 10px"></p>
+
+                <!-- Username input -->
+                <!-- <input id="username" type="text" placeholder="Username" style="width: 100%; margin-bottom: 10px" /> -->
+
+                <!-- New message input -->
+                <input id="newMessage" type="text" placeholder="Type a message..." style="width: 100%" />
+              </div>
+            </div>
+          </div>
+
+          <!-- Message list panel -->
+          <div class="panel panel-default">
+            <div class="panel-heading">Posts</div>
+            <div class="panel-body">
+              <!-- Message list -->
+              <div id="messageList" class="list-group" style="margin-bottom: 0">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+<script>
+
+	var ref = new Firebase("https://vivid-inferno-4124.firebaseio.com/");
+  var messagesRef = ref.child("messages");
+  console.log(ref,"  YO!");
+  // Get references to DOM elements
+  var $username = $("#username");
+  var $newMessage = $("#newMessage");
+  var $messageList = $("#messageList");
+  var $loginButton = $("#loginButton");
+  var $loggedInText = $("#loggedInText");
+  var $logoutButton = $("#logoutButton");
+
+  // Add a new message to the message list
+  function addMessage(username, text) {
+    var el = $("<li class='list-group-item'><b>" + '<img src="'+globalAuthData.google.profileImageURL+'" height="50px" width="50px"><b>'+ username + ":</b> " + text + "</li>")
+    $messageList.append(el);
+  }
+
+  // Loop through the last ten messages stored in Firebase
+  messagesRef.limitToLast(10).on("child_added", function(snapshot) {
+    var message = snapshot.val();
+
+    // Escape unsafe characters
+    var username = message.username.replace(/\</g, "&lt;").replace(/\>/g, "&gt;");
+    var text = message.text.replace(/\</g, "&lt;").replace(/\>/g, "&gt;");
+
+    addMessage(username , text);
+  });
+
+  // Listen for key presses on the new message input
+  $newMessage.keypress(function (e) {
+    // Get field values
+    var username = $username.val();
+    var text = $newMessage.val().trim();
+
+    // Save message to Firebase when enter key is pressed
+    if (e.keyCode == 13 && text.length) {
+      messagesRef.push({
+
+        username: "@" + globalAuthData.google.displayName,
+        text: text
+      }, function(error) {
+        if (error) {
+          console.log("Error adding new message:", error);
+        }
+      });
+
+      // Reset new message input
+      $newMessage.val("");
+    }
+  });
+
+  // Listen for changes in auth state and show the appropriate buttons and messages
+  var globalAuthData;
+  ref.onAuth(function(authData) {
+    globalAuthData = authData;
+
+    if (authData) {
+      // User logged in
+      $loginButton.hide();
+      $logoutButton.show();
+      $loggedInText.text("Logged in as " + authData.google.displayName);
+      $newMessage.prop("disabled", false);
+    } else {
+      // User logged out
+      $loginButton.show();
+      $logoutButton.hide();
+      $loggedInText.text("");
+      $newMessage.prop("disabled", true);
+    }
+  });
+
+  // Login with Google when the login button is pressed
+  $loginButton.click(function() {
+    ref.authWithOAuthPopup("google", function(error, authData) {
+      if (error) {
+        console.error("Error authenticating with google:", error);
+      }
+    });
+  });
+
+  // Logout when the logout button is pressed
+  $logoutButton.click(function() {
+    ref.unauth();
+  });
+</script>
+<div style="height: 350px;"></div>
+
+ {% endblock %}
